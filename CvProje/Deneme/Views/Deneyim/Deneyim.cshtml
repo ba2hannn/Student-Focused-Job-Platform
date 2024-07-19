@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Deneme.Models.Deneyimler>
+
+@{
+    Layout = "~/Views/Shared/_Portfolyo.cshtml";
+}
+
+<h2>Deneyimler</h2>
+
+<div>
+    @Html.ActionLink("Deneyim Ekle", "DeneyimEkle", "Deneyim", null, new { @class = "btn btn-success" })
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Deneyim Adı</th>
+            <th>Deneyim Detayı</th>
+            <th>Deneyim İçeriği</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var deneyim in Model)
+        {
+            <tr>
+                <td>@deneyim.DeneyimAdi</td>
+                <td>@deneyim.DeneyimDetayi</td>
+                <td>@deneyim.Deneyimİcerigi</td>
+                <td>
+                    @using (Html.BeginForm("DeneyimSil", "Deneyim", FormMethod.Post))
+                    {
+                        @Html.Hidden("DeneyimID", deneyim.DeneyimID)
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "DeneyimDuzenle", "Deneyim", new { deneyimID = deneyim.DeneyimID }, new { @class = "btn btn-warning" })
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Deneme.Models.Egitimler>
+
+@{
+    ViewBag.Title = "Egitim";
+    Layout = "~/Views/Shared/_Portfolyo.cshtml";
+}
+
+<h2>Eğitimler</h2>
+
+<div>
+    @Html.ActionLink("Eğitim Ekle", "EgitimEkle", "Egitim", null, new { @class = "btn btn-success" })
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sınıf</th>
+            <th>GNO</th>
+            <th>Üniversite</th>
+            <th>Bölüm</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var egitim in Model)
+        {
+        <tr>
+            <td>@egitim.Sinif</td>
+            <td>@egitim.GNO</td>
+            <td>@egitim.Universiteler.UniversiteAdi</td>
+            <td>@egitim.Bolum.BolumAdi</td>
+            <td>
+                @using (Html.BeginForm("EgitimSil", "Egitim", FormMethod.Post))
+                {
+                    @Html.Hidden("EgitimID", egitim.EgitimID)
+                    <button type="submit" class="btn btn-danger">Sil</button>
+                }
+            </td>
+            <td>
+            @Html.ActionLink("Düzenle", "EgitimDuzenle", "Egitim", new {egitimID = egitim.EgitimID}, new { @class = "btn btn-warning"})
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>

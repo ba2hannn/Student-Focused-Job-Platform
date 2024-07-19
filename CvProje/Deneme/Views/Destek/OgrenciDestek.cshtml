@@ -1,0 +1,28 @@
+﻿@model Deneme.Models.Destek
+
+@{
+    Layout = "~/Views/Shared/_UstveAltBarOgrenci.cshtml";
+}
+
+    
+
+<div class="container mt-5">
+    <div class="card p-5">
+        <h2 class="baslik">Destek Talebi Oluştur</h2>
+
+        @using (Html.BeginForm())
+        {
+@Html.AntiForgeryToken()
+
+
+                <div class="form-group">
+                    <p>Lütfen iletmek istediğiniz mesajı giriniz.</p>
+                    @Html.TextAreaFor(model => model.OgrenciDestek, new { @class = "form-control", rows = "5" })
+                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary mt-3">Gönder</button>
+                                </div>}
+    </div>
+</div>
+

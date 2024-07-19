@@ -1,0 +1,639 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A10645DB-D131-4BC4-A0F9-03E4E0355526}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Deneme</RootNamespace>
+    <AssemblyName>Deneme</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.5.0.0\lib\net461\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.5.0.0\lib\net461\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.5.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.3.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.3.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Site.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\css\bootstrap.min.css" />
+    <Content Include="Models\css\style.css" />
+    <Content Include="Models\js\main.js" />
+    <Content Include="Models\Kaynaklar\arkaplan.png" />
+    <Content Include="Models\lib\animate\animate.css" />
+    <Content Include="Models\lib\animate\animate.min.css" />
+    <Content Include="Models\lib\counterup\counterup.min.js" />
+    <Content Include="Models\lib\easing\easing.js" />
+    <Content Include="Models\lib\easing\easing.min.js" />
+    <Content Include="Models\lib\owlcarousel\assets\owl.carousel.css" />
+    <Content Include="Models\lib\owlcarousel\assets\owl.carousel.min.css" />
+    <Content Include="Models\lib\owlcarousel\assets\owl.theme.default.css" />
+    <Content Include="Models\lib\owlcarousel\assets\owl.theme.default.min.css" />
+    <Content Include="Models\lib\owlcarousel\assets\owl.theme.green.css" />
+    <Content Include="Models\lib\owlcarousel\assets\owl.theme.green.min.css" />
+    <Content Include="Models\lib\owlcarousel\owl.carousel.js" />
+    <Content Include="Models\lib\owlcarousel\owl.carousel.min.js" />
+    <Content Include="Models\lib\tempusdominus\css\tempusdominus-bootstrap-4.css" />
+    <Content Include="Models\lib\tempusdominus\css\tempusdominus-bootstrap-4.min.css" />
+    <Content Include="Models\lib\tempusdominus\js\moment-timezone.min.js" />
+    <Content Include="Models\lib\tempusdominus\js\moment.min.js" />
+    <Content Include="Models\lib\tempusdominus\js\tempusdominus-bootstrap-4.js" />
+    <Content Include="Models\lib\tempusdominus\js\tempusdominus-bootstrap-4.min.js" />
+    <Content Include="Models\lib\waypoints\links.php" />
+    <Content Include="Models\lib\waypoints\waypoints.min.js" />
+    <Content Include="Models\lib\wow\wow.js" />
+    <Content Include="Models\lib\wow\wow.min.js" />
+    <Content Include="startbootstrap-resume-gh-pages\css\resume.css" />
+    <Content Include="startbootstrap-resume-gh-pages\css\resume.min.css" />
+    <Content Include="startbootstrap-resume-gh-pages\img\profile.jpg" />
+    <Content Include="startbootstrap-resume-gh-pages\js\resume.js" />
+    <Content Include="startbootstrap-resume-gh-pages\js\resume.min.js" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\all.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\all.min.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\brands.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\brands.min.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\fontawesome.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\fontawesome.min.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\regular.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\regular.min.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\solid.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\solid.min.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\svg-with-js.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\svg-with-js.min.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\v4-shims.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\css\v4-shims.min.css" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\jquery-easing\jquery.easing.compatibility.js" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\jquery-easing\jquery.easing.js" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\jquery-easing\jquery.easing.min.js" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\jquery\jquery.js" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\jquery\jquery.min.js" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\jquery\jquery.slim.js" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Views\Giris\css\style.css" />
+    <Content Include="Views\Giris\fonts\material-icon\css\material-design-iconic-font.css" />
+    <Content Include="Views\Giris\fonts\material-icon\css\material-design-iconic-font.min.css" />
+    <Content Include="Views\Giris\fonts\material-icon\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-300.svg" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-300italic.svg" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-500.svg" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-500italic.svg" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-600.svg" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-700.svg" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-700italic.svg" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-800.svg" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-800italic.svg" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-900.svg" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-italic.svg" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-regular.svg" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-700.svg" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-700italic.svg" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-italic.svg" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-regular.svg" />
+    <Content Include="Views\Giris\images\signin-image.jpg" />
+    <Content Include="Views\Giris\images\signup-image.jpg" />
+    <Content Include="Views\Giris\js\main.js" />
+    <Content Include="Views\Giris\vendor\jquery\jquery-ui.min.js" />
+    <Content Include="Views\Giris\vendor\jquery\jquery.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="zek\css\bootstrap.min.css" />
+    <Content Include="zek\css\bootstrap\mixins\_border-radius.css" />
+    <Content Include="zek\css\bootstrap\mixins\_reset-text.css" />
+    <Content Include="zek\css\bootstrap\mixins\_screen-reader.css" />
+    <Content Include="zek\css\bootstrap\mixins\_text-hide.css" />
+    <Content Include="zek\css\bootstrap\mixins\_visibility.css" />
+    <Content Include="zek\css\bootstrap\utilities\_stretched-link.css" />
+    <Content Include="zek\css\bootstrap\_media.css" />
+    <Content Include="zek\css\style.css" />
+    <Content Include="zek\dız\js\bootstrap.min.js" />
+    <Content Include="zek\dız\js\jquery.min.js" />
+    <Content Include="zek\dız\js\main.js" />
+    <Content Include="zek\dız\js\popper.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DeneyimController.cs" />
+    <Compile Include="Controllers\DestekController.cs" />
+    <Compile Include="Controllers\EgitimController.cs" />
+    <Compile Include="Controllers\GirisController.cs" />
+    <Compile Include="Controllers\IlanlarController.cs" />
+    <Compile Include="Controllers\IlgiAlanlariController.cs" />
+    <Compile Include="Controllers\PortfolyoController.cs" />
+    <Compile Include="Controllers\SertifikaController.cs" />
+    <Compile Include="Controllers\YeteneklerController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminPaneli.cs" />
+    <Compile Include="Models\AnatabloVM.cs" />
+    <Compile Include="Models\Basvurular.cs" />
+    <Compile Include="Models\Bolum.cs" />
+    <Compile Include="Models\Deneyimler.cs" />
+    <Compile Include="Models\Departmanlar.cs" />
+    <Compile Include="Models\DersIcerigi.cs" />
+    <Compile Include="Models\Destek.cs" />
+    <Compile Include="Models\Egitimler.cs" />
+    <Compile Include="Models\FavoriIlanlar.cs" />
+    <Compile Include="Models\Iletisim.cs" />
+    <Compile Include="Models\IlgiAlanlari.cs" />
+    <Compile Include="Models\IsIlanlari.cs" />
+    <Compile Include="Models\Isverenler.cs" />
+    <Compile Include="Models\Managers\VeritabaniContext.cs" />
+    <Compile Include="Models\Ogrenciler.cs" />
+    <Compile Include="Models\Sektorler.cs" />
+    <Compile Include="Models\Sertifikalar.cs" />
+    <Compile Include="Models\Universiteler.cs" />
+    <Compile Include="Models\Yetenekler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="Models\lib\owlcarousel\LICENSE" />
+    <None Include="packages.config" />
+    <Content Include="Views\Giris\GirisYap.cshtml" />
+    <Content Include="Views\Giris\OgrenciKayit.cshtml" />
+    <Content Include="Views\Giris\IsverenKayit.cshtml" />
+    <Content Include="Views\Giris\OgrenciGirisYap.cshtml" />
+    <Content Include="Views\Giris\IsverenGirisYap.cshtml" />
+    <Content Include="Views\Shared\_UstveAltBarIsveren.cshtml" />
+    <Content Include="Views\Giris\AnasayfaOgrenci.cshtml" />
+    <Content Include="Views\Ilanlar\IsFirsatlari.cshtml" />
+    <Content Include="Views\Ilanlar\FavoriIlanlarim.cshtml" />
+    <Content Include="Views\Giris\AnasayfaIsveren.cshtml" />
+    <Content Include="Views\Shared\_UstveAltBarOgrenci.cshtml" />
+    <Content Include="Views\Ilanlar\IlanEkle.cshtml" />
+    <Content Include="Views\Admin\AdminGiris.cshtml" />
+    <Content Include="Views\Admin\AnasayfaAdmin.cshtml" />
+    <Content Include="Views\Portfolyo\OgrenciBilgileri.cshtml" />
+    <Content Include="Views\Egitim\EgitimEkle.cshtml" />
+    <Content Include="Views\Shared\_Portfolyo.cshtml" />
+    <Content Include="Views\Egitim\Egitim.cshtml" />
+    <Content Include="Views\Egitim\EgitimDuzenle.cshtml" />
+    <Content Include="Views\Deneyim\Deneyim.cshtml" />
+    <Content Include="Views\Deneyim\DeneyimDuzenle.cshtml" />
+    <Content Include="Views\Deneyim\DeneyimEkle.cshtml" />
+    <Content Include="Views\Sertifika\Sertifika.cshtml" />
+    <Content Include="Views\Sertifika\SertifikaEkle.cshtml" />
+    <Content Include="Views\Sertifika\SertifikaDuzenle.cshtml" />
+    <Content Include="Views\Portfolyo\OgrenciDuzenle.cshtml" />
+    <Content Include="Views\IlgiAlanlari\IlgiAlanlari.cshtml" />
+    <Content Include="Views\IlgiAlanlari\IlgiAlanlariEkle.cshtml" />
+    <Content Include="Views\IlgiAlanlari\IlgiAlanlariDuzenle.cshtml" />
+    <Content Include="Views\Yetenekler\Yetenek.cshtml" />
+    <Content Include="Views\Yetenekler\YetenekEkle.cshtml" />
+    <Content Include="Views\Yetenekler\YetenekDuzenle.cshtml" />
+    <Content Include="Views\Portfolyo\Portfolyo.cshtml" />
+    <Content Include="startbootstrap-resume-gh-pages\scss\resume.scss" />
+    <Content Include="startbootstrap-resume-gh-pages\scss\_bootstrap-overrides.scss" />
+    <Content Include="startbootstrap-resume-gh-pages\scss\_global.scss" />
+    <Content Include="startbootstrap-resume-gh-pages\scss\_mixins.scss" />
+    <Content Include="startbootstrap-resume-gh-pages\scss\_nav.scss" />
+    <Content Include="startbootstrap-resume-gh-pages\scss\_resume-item.scss" />
+    <Content Include="startbootstrap-resume-gh-pages\scss\_variables.scss" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-brands-400.eot" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-brands-400.woff" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-regular-400.eot" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-regular-400.woff" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-solid-900.eot" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-solid-900.woff" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\jquery\jquery.min.map" />
+    <Content Include="startbootstrap-resume-gh-pages\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Views\Ilanlar\IsIlanlari.cshtml" />
+    <Content Include="Views\Ilanlar\OgrenciMesajlar.cshtml" />
+    <Content Include="Views\Ilanlar\OgrenciMesajlasma.cshtml" />
+    <Content Include="Views\Ilanlar\IsverenMesajlar.cshtml" />
+    <Content Include="Views\Ilanlar\IsverenMesajlasma.cshtml" />
+    <Content Include="Views\Ilanlar\IsIlanlarim.cshtml" />
+    <Content Include="Views\Ilanlar\OgrenciBasvurular.cshtml" />
+    <Content Include="Views\Ilanlar\IsverenBasvurular.cshtml" />
+    <Content Include="Views\Portfolyo\IsverenPortfolyo.cshtml" />
+    <Content Include="Views\Giris\.sass-cache\21880c0ffe15753a53f8402e9f64e1077e071510\style.scssc" />
+    <Content Include="Views\Giris\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\extend.scssc" />
+    <Content Include="Views\Giris\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\fonts.scssc" />
+    <Content Include="Views\Giris\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\global.scssc" />
+    <Content Include="Views\Giris\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\minxi.scssc" />
+    <Content Include="Views\Giris\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\variables.scssc" />
+    <Content Include="Views\Giris\.sass-cache\3948936f84e1a30385e73a9be140b58b48c82e15\style.scssc" />
+    <Content Include="Views\Giris\.sass-cache\643489b018602f15119d8f44aeb7fc79468873a9\main.scssc" />
+    <Content Include="Views\Giris\.sass-cache\643489b018602f15119d8f44aeb7fc79468873a9\responsive.scssc" />
+    <Content Include="Views\Giris\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\extend.scssc" />
+    <Content Include="Views\Giris\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\fonts.scssc" />
+    <Content Include="Views\Giris\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\global.scssc" />
+    <Content Include="Views\Giris\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\minxi.scssc" />
+    <Content Include="Views\Giris\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\variables.scssc" />
+    <Content Include="Views\Giris\.sass-cache\9dc767a56f3dc2f8a933300255cd2265f13191d4\main.scssc" />
+    <Content Include="Views\Giris\.sass-cache\9dc767a56f3dc2f8a933300255cd2265f13191d4\responsive.scssc" />
+    <Content Include="Views\Giris\css\style.css.map" />
+    <Content Include="Views\Giris\fonts\material-icon\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Views\Giris\fonts\material-icon\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Views\Giris\fonts\material-icon\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Views\Giris\fonts\material-icon\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-300.eot" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-300.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-300.woff" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-300.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-300italic.eot" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-300italic.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-300italic.woff" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-300italic.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-500.eot" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-500.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-500.woff" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-500.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-500italic.eot" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-500italic.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-500italic.woff" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-500italic.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-600.eot" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-600.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-600.woff" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-600.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-700.eot" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-700.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-700.woff" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-700.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-700italic.eot" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-700italic.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-700italic.woff" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-700italic.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-800.eot" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-800.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-800.woff" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-800.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-800italic.eot" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-800italic.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-800italic.woff" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-800italic.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-900.eot" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-900.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-900.woff" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-900.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-italic.eot" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-italic.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-italic.woff" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-italic.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-regular.eot" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-regular.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-regular.woff" />
+    <Content Include="Views\Giris\fonts\poppins\poppins-v5-latin-regular.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-700.eot" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-700.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-700.woff" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-700.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-700italic.eot" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-700italic.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-700italic.woff" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-700italic.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-italic.eot" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-italic.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-italic.woff" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-italic.woff2" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-regular.eot" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-regular.ttf" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-regular.woff" />
+    <Content Include="Views\Giris\fonts\poppins\roboto-condensed-v16-latin-regular.woff2" />
+    <Content Include="Views\Giris\scss\common\extend.scss" />
+    <Content Include="Views\Giris\scss\common\fonts.scss" />
+    <Content Include="Views\Giris\scss\common\global.scss" />
+    <Content Include="Views\Giris\scss\common\minxi.scss" />
+    <Content Include="Views\Giris\scss\common\variables.scss" />
+    <Content Include="Views\Giris\scss\layouts\main.scss" />
+    <Content Include="Views\Giris\scss\layouts\responsive.scss" />
+    <Content Include="Views\Giris\scss\style.scss" />
+    <Content Include="Views\Admin\BolumDuzenle.cshtml" />
+    <Content Include="Views\Admin\BolumEkle.cshtml" />
+    <Content Include="Views\Admin\DepartmanIslemleri.cshtml" />
+    <Content Include="Views\Admin\DepartmanEkle.cshtml" />
+    <Content Include="Views\Admin\DepartmanDuzenle.cshtml" />
+    <Content Include="Views\Admin\DersIcerigiIslemleri.cshtml" />
+    <Content Include="Views\Admin\DersIcerigiEkle.cshtml" />
+    <Content Include="Views\Admin\DersIcerigiDuzenle.cshtml" />
+    <Content Include="Views\Admin\EgitimIslemleri.cshtml" />
+    <Content Include="Views\Admin\EgitimDuzenle.cshtml" />
+    <Content Include="Views\Admin\FavoriIlanlarIslemleri.cshtml" />
+    <Content Include="Views\Admin\IsIlanlariIslemleri.cshtml" />
+    <Content Include="Views\Admin\OgrencilerIslemleri.cshtml" />
+    <Content Include="Views\Admin\SektorlerIslemleri.cshtml" />
+    <Content Include="Views\Admin\SektorEkle.cshtml" />
+    <Content Include="Views\Admin\BolumIslemleri.cshtml" />
+    <Content Include="Views\Admin\IletisimlerIslemleri.cshtml" />
+    <Content Include="Views\Admin\IsverenlerIslemleri.cshtml" />
+    <Content Include="Views\Admin\SektorDuzenle.cshtml" />
+    <Content Include="Views\Admin\UniversiteDuzenle.cshtml" />
+    <Content Include="Views\Admin\UniversiteEkle.cshtml" />
+    <Content Include="Views\Admin\UniversitelerIslemleri.cshtml" />
+    <Content Include="Views\Destek\OgrenciDestek.cshtml" />
+    <Content Include="Views\Destek\IsverenDestek.cshtml" />
+    <Content Include="Views\Admin\DestekIslemleri.cshtml" />
+    <Content Include="Views\Admin\YetenekIslemleri.cshtml" />
+    <Content Include="Views\Admin\IlgiAlanlari.cshtml" />
+    <Content Include="Views\Admin\DeneyimIslemleri.cshtml" />
+    <Content Include="Views\Admin\SertifikaIslemleri.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="zek\css\.DS_Store" />
+    <Content Include="zek\css\bootstrap\.DS_Store" />
+    <Content Include="zek\css\bootstrap\mixins\.DS_Store" />
+    <Content Include="zek\dız\fonts\.DS_Store" />
+    <Content Include="zek\dız\js\.DS_Store" />
+    <Content Include="zek\dız\scss\.DS_Store" />
+    <Content Include="zek\dız\scss\bootstrap\.DS_Store" />
+    <Content Include="zek\dız\scss\bootstrap\bootstrap-grid.scss" />
+    <Content Include="zek\dız\scss\bootstrap\bootstrap-reboot.scss" />
+    <Content Include="zek\dız\scss\bootstrap\bootstrap.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_alert.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_badge.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_box-shadow.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_breakpoints.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_buttons.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_caret.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_deprecate.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_float.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_forms.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_gradients.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_grid.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_hover.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_image.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_list-group.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_lists.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_pagination.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_resize.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_screen-reader.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_size.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_table-row.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_text-hide.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_text-truncate.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_transition.scss" />
+    <Content Include="zek\dız\scss\bootstrap\mixins\_visibility.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_align.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_background.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_borders.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_clearfix.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_display.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_embed.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_flex.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_float.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_overflow.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_position.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_screenreaders.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_shadows.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_sizing.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_spacing.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_stretched-link.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_text.scss" />
+    <Content Include="zek\dız\scss\bootstrap\utilities\_visibility.scss" />
+    <Content Include="zek\dız\scss\bootstrap\vendor\_rfs.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_alert.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_badge.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_breadcrumb.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_button-group.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_buttons.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_card.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_carousel.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_close.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_code.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_custom-forms.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_dropdown.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_forms.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_functions.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_grid.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_images.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_input-group.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_jumbotron.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_list-group.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_media.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_mixins.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_modal.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_nav.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_navbar.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_pagination.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_popover.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_print.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_progress.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_reboot.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_root.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_spinners.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_tables.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_toasts.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_tooltip.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_transitions.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_type.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_utilities.scss" />
+    <Content Include="zek\dız\scss\bootstrap\_variables.scss" />
+    <Content Include="zek\dız\scss\style.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\scss\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50728</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:12345/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

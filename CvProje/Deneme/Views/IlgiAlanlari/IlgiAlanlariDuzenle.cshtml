@@ -1,0 +1,26 @@
+﻿@model Deneme.Models.IlgiAlanlari
+
+@{
+    Layout = "~/Views/Shared/_Portfolyo.cshtml";
+}
+
+@{
+    var alan = Model;
+}
+
+<h2>Eğitimi Düzenle</h2>
+
+@using (Html.BeginForm("IlgiAlanlariDuzenle", "IlgiAlanlari", FormMethod.Post))
+{
+    <div class="form-group">
+        <br />
+        @Html.LabelFor(m => m.IlgiAdi)
+        @Html.TextBoxFor(m => m.IlgiAdi, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.IlgiAciklamasi)
+        @Html.TextBoxFor(m => m.IlgiAciklamasi, new { @class = "form-control" })
+        <br />
+        @Html.Hidden("IlgiID", alan.IlgiID)
+        <button type="submit" class="btn btn-warning">Güncelle</button>
+    </div>
+}

@@ -1,0 +1,26 @@
+﻿@model Deneme.Models.Destek
+
+@{
+    Layout = "~/Views/Shared/_UstveAltBarIsveren.cshtml";
+}
+
+
+<div class="container mt-5">
+    <div class="card p-5">
+        <h2 class="baslik">İşveren Destek Talebi Oluştur</h2>
+
+        @using (Html.BeginForm())
+        {
+@Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <p>Lütfen İletmek İstediğiniz Mesajı Yazınız.</p>
+        @Html.TextAreaFor(model => model.IsverenDestek, new { @class = "form-control", rows = "5" })
+
+    </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary mt-3">Gönder</button>
+                                </div>}
+    </div>
+</div>

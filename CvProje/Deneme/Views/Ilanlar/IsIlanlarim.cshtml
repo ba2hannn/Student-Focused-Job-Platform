@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Deneme.Models.IsIlanlari>
+
+@{
+    ViewBag.Title = "IsIlanlarim";
+    Layout = "~/Views/Shared/_UstveAltBarIsveren.cshtml";
+}
+
+@{
+    var favoriIlanSayilari = ViewBag.FavoriIlanSayilari as Dictionary<int, int>;
+}
+
+
+<div>
+    @Html.ActionLink("İş İlanı Ekle", "IlanEkle", "Ilanlar", null, new { @class = "btn btn-success" })
+</div>
+
+<table class="table">
+    <thead>
+        <tr style="color:aliceblue">
+            <th>İlan Başlığı</th>
+            <th>İlan Gereksinimleri</th>
+            <th>İlan Sektörü</th>
+            <th>İlan Departmanı</th>
+            <th>Favori Sayısı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ilan in Model)
+        {
+            <tr style="color:aliceblue">
+                <td>@ilan.IlanBaslik</td>
+                <td>@ilan.Gereksinimler</td>
+                <td>@ilan.Sektorler.SektorAdi</td>
+                <td>@ilan.Departmanlar.DepartmanAdi</td>
+                <td>@(favoriIlanSayilari.ContainsKey(ilan.IsIlaniID) ? favoriIlanSayilari[ilan.IsIlaniID] : 0)</td>
+                <td>
+                    @using (Html.BeginForm("IlanSil", "Ilanlar", FormMethod.Post))
+                    {
+                        @Html.Hidden("IlanID", ilan.IsIlaniID)
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

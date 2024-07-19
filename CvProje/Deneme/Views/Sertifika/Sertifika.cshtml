@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Deneme.Models.Sertifika>
+
+@{
+    Layout = "~/Views/Shared/_Portfolyo.cshtml";
+}
+
+<h2>Sertifikalar</h2>
+
+<div>
+    @Html.ActionLink("Sertifika Ekle", "SertifikaEkle", "Sertifika", null, new { @class = "btn btn-success" })
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sertifika Adı</th>
+            <th>Sertifika Açıklaması</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sertifika in Model)
+        {
+            <tr>
+                <td>@sertifika.SertifikaAdi</td>
+                <td>@sertifika.SertifikaAciklamasi</td>
+                <td>
+                    @using (Html.BeginForm("SertifikaSil", "Sertifika", FormMethod.Post))
+                    {
+                        @Html.Hidden("SertifikaID", sertifika.SertifikaID)
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "SertifikaDuzenle", "Sertifika", new { sertifikaID = sertifika.SertifikaID }, new { @class = "btn btn-warning" })
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

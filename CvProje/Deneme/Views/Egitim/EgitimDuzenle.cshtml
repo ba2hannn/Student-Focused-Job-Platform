@@ -1,0 +1,51 @@
+﻿@model Deneme.Models.Egitimler
+
+@{
+    ViewBag.Title = "Eğitimi Düzenle";
+    Layout = "~/Views/Shared/_Portfolyo.cshtml";
+}
+
+@{
+    var egitim = Model;
+}
+
+<h2>Eğitimi Düzenle</h2>
+
+@using (Html.BeginForm("EgitimDuzenle", "Egitim", FormMethod.Post))
+{
+    <div class="form-group">
+        <div class="mt-3">
+            @if (ViewBag.result != null)
+            {
+                <div class="alert alert-@ViewBag.status" role="alert">
+                    @ViewBag.result
+                </div>
+            }
+        </div>
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Universiteler.UniversiteID, "Üniversiteler", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Universiteler.UniversiteID, ViewBag.UniversitelerList as SelectList, "Üniversite Seçiniz", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Universiteler.UniversiteID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Bolum.BolumID, "Bölüm", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Bolum.BolumID, ViewBag.BolumList as SelectList, "Bölüm Seçiniz", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Bolum.BolumID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        @Html.LabelFor(m => m.Sinif)
+        @Html.TextBoxFor(m => m.Sinif, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.GNO)
+        @Html.TextBoxFor(m => m.GNO, new { @class = "form-control" })
+        <br />
+        @Html.Hidden("EgitimID", egitim.EgitimID)
+        <button type="submit" class="btn btn-warning">Güncelle</button>
+    </div>
+}

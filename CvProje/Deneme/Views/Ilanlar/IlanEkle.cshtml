@@ -1,0 +1,119 @@
+﻿@model Deneme.Models.IsIlanlari
+@{
+    ViewBag.Title = "IlanEkle";
+    Layout = "~/Views/Shared/_UstveAltBarIsveren.cshtml";
+}
+
+<style>
+    .bg-dark {
+        background-color: #1B2C51 !important;
+    }
+</style>
+
+<<div class="d-flex justify-content-center align-items-center" style="height: auto;">
+    <div class="card bg-dark text-white" style="max-width: 600px; width: 100%;">
+        <div class="card-header text-center" style="font-size: 48px;">
+            İlan Ekle
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("IlanEkle", "Ilanlar", FormMethod.Post, new { id = "ilanForm" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.IlanBaslik, "İlan Başlığı", htmlAttributes: new { @class = "control-label col-md-4 text-md-right" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.IlanBaslik, new { htmlAttributes = new { @class = "form-control text-dark" } })
+                            @Html.ValidationMessageFor(model => model.IlanBaslik, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Aciklama, "İlan Açıklaması", htmlAttributes: new { @class = "control-label col-md-4 text-md-right" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Aciklama, new { htmlAttributes = new { @class = "form-control text-dark" } })
+                            @Html.ValidationMessageFor(model => model.Aciklama, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Gereksinimler, "Gereksinimler", htmlAttributes: new { @class = "control-label col-md-4 text-md-right" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Gereksinimler, new { htmlAttributes = new { @class = "form-control text-dark" } })
+                            @Html.ValidationMessageFor(model => model.Gereksinimler, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <!-- Departman Seçimi -->
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Departmanlar.DepartmanID, "Departman", htmlAttributes: new { @class = "control-label col-md-4 text-md-right" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("DepartmanID", ViewBag.DepartmanlarList as SelectList, "Departman Seçiniz", new { @class = "form-control text-dark bg-light" })
+                            @Html.ValidationMessageFor(model => model.Departmanlar.DepartmanID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <!-- Sektör Seçimi -->
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Sektorler.SektorID, "Sektör", htmlAttributes: new { @class = "control-label col-md-4 text-md-right" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("SektorID", ViewBag.SektorlerList as SelectList, "Sektör Seçiniz", new { @class = "form-control text-dark bg-light" })
+                            @Html.ValidationMessageFor(model => model.Sektorler.SektorID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <div class="col-md-8 offset-md-4 text-center">
+                            <input type="submit" value="İlanı Ekle" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>
+<br />
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#ilanForm').submit(function (event) {
+            event.preventDefault();
+
+            var aciklama = $('#Aciklama').val().trim();
+            var gereksinimler = $('#Gereksinimler').val().trim();
+            var departmanID = $('#DepartmanID').val().trim();
+            var sektorID = $('#SektorID').val().trim();
+
+            if (aciklama === '' || gereksinimler === '' || departmanID === '' || sektorID === '') {
+                alert('Lütfen tüm alanları doldurun.');
+                return;
+            }
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("IlanEkle", "Ilanlar")',
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function () {
+                    alert("Bir hata oluştu, lütfen tekrar deneyin.");
+                }
+            });
+        });
+    });
+</script>

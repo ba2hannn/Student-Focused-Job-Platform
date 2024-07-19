@@ -1,0 +1,55 @@
+﻿@model Deneme.Models.Egitimler
+@{ ViewBag.Title = "Egitimler";
+                Layout = "~/Views/Shared/_Portfolyo.cshtml"; }
+
+<h2>Egitimler</h2>
+<div>
+    @using (Html.BeginForm("EgitimEkle", "Egitim", FormMethod.Post, new { id = "EgitimekleForm" }))
+    {
+@Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Universiteler.UniversiteID, "Üniversiteler", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("UniversiteID", ViewBag.UniversitelerList as SelectList, "Üniversite Seçiniz", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Universiteler.UniversiteID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Bolum.BolumID, "Bölüm", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("BolumID", ViewBag.BolumList as SelectList, "Bölum Seçiniz", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Bolum.BolumID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Sinif, "Sınıf", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Sinif, new SelectList(new List<string> { "1", "2", "3", "4" }), "Sınıf Seçiniz", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Sinif, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GNO, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.GNO, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.GNO, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Eğitim Ekle" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>}
+</div>

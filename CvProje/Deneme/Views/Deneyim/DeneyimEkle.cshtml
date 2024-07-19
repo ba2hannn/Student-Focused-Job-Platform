@@ -1,0 +1,46 @@
+﻿@model Deneme.Models.Deneyimler
+@{
+
+    Layout = "~/Views/Shared/_Portfolyo.cshtml";
+}
+
+<h2>Deneyimler</h2>
+<div>
+    @using (Html.BeginForm("DeneyimEkle", "Deneyim", FormMethod.Post, new { id = "DeneyimEkleForm" }))
+    {
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DeneyimAdi,"Deneyim Adı", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DeneyimAdi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DeneyimAdi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DeneyimDetayi,"Deneyim Detayı", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DeneyimDetayi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DeneyimDetayi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Deneyimİcerigi,"Deneyim İçeriği", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Deneyimİcerigi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Deneyimİcerigi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Deneyim Ekle" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

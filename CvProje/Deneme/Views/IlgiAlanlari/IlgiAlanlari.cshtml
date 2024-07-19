@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Deneme.Models.IlgiAlanlari>
+
+@{
+    Layout = "~/Views/Shared/_Portfolyo.cshtml";
+}
+
+<h2>İlgi Alanları</h2>
+
+<div>
+    @Html.ActionLink("İlgilendiğin Alanları Ekle", "IlgiAlanlariEkle", "IlgiAlanlari", null, new { @class = "btn btn-success" })
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>İlgi Alanı Adı</th>
+            <th>İlgi Alanı Açıklaması</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var alan in Model)
+        {
+            <tr>
+                <td>@alan.IlgiAdi</td>
+                <td>@alan.IlgiAciklamasi</td>
+                <td>
+                    @using (Html.BeginForm("IlgiAlanlariSil", "IlgiAlanlari", FormMethod.Post))
+                    {
+                        @Html.Hidden("IlgiAlaniID", alan.IlgiID)
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "IlgiAlanlariDuzenle", "IlgiAlanlari", new { IlgiAlaniID = alan.IlgiID }, new { @class = "btn btn-warning" })
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

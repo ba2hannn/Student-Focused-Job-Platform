@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Deneme.Models.Iletisim>
+
+@{
+    Layout = "~/Views/Shared/_UstveAltBarOgrenci.cshtml";
+}
+
+<style>
+    td, th, p {
+        color: white;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Öğrenci Mesajlarınız</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Şirket Adı</th>
+                        <th scope="col">İlan Başlığı</th>
+                        <th scope="col">Açıklama</th>
+                        <th scope="col">Gereksinimler</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.IsIlanlari.Isverenler.SirketAdi</td>
+                            <td>@item.IsIlanlari.IlanBaslik</td>
+                            <td>@item.IsIlanlari.Aciklama</td>
+                            <td>@item.IsIlanlari.Gereksinimler</td>
+                            <td>
+                                @Html.ActionLink("Mesaj Gönder", "OgrenciMesajlasma", "Ilanlar", new { ilanId = item.IsIlanlari.IsIlaniID }, new { @class = "btn btn-primary" })
+                                @Html.Hidden("ilanId", item.IsIlanlari.IsIlaniID)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @if (!Model.Any())
+            {
+                <p>Henüz mesajınız bulunmamaktadır.</p>
+            }
+        </div>
+    </div>
+</div>

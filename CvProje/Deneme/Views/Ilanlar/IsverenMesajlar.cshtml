@@ -1,0 +1,52 @@
+﻿@model List<Deneme.Models.Iletisim>
+
+@{
+    Layout = "~/Views/Shared/_UstveAltBarIsveren.cshtml";
+}
+
+<style>
+    td, th {
+        color: white;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 style="color:white">Öğrenci Mesajlarınız</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Öğrenci Adı Soyadı</th>
+                        <th scope="col">İlan Başlığı</th>
+                        <th scope="col">Açıklama</th>
+                        <th scope="col">Gereksinimler</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item.IsIlanlari != null)
+                        {
+                            <tr>
+                                <td>@item.Ogrenciler.OgrenciAdi @item.Ogrenciler.OgrenciSoyadi</td>
+                                <td>@item.IsIlanlari.IlanBaslik</td>
+                                <td>@item.IsIlanlari.Aciklama</td>
+                                <td>@item.IsIlanlari.Gereksinimler</td>
+                                <td>
+                                    @Html.ActionLink("Mesaj Gönder", "IsverenMesajlasma", "Ilanlar", new { ilanId = item.IsIlanlari.IsIlaniID, ogrenciId = item.Ogrenciler.OgrenciID }, new { @class = "btn btn-primary" })
+                                    @Html.Hidden("ilanId", item.IsIlanlari.IsIlaniID)
+                                    @Html.Hidden("ogrenciId", item.Ogrenciler.OgrenciID)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            @if (!Model.Any())
+            {
+                <p>Henüz mesajınız bulunmamaktadır.</p>
+            }
+        </div>
+    </div>
+</div>

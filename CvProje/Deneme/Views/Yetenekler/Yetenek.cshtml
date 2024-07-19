@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Deneme.Models.Yetenekler>
+
+@{
+    Layout = "~/Views/Shared/_Portfolyo.cshtml";
+}
+
+<h2>Yetenekler</h2>
+
+<div>
+    @Html.ActionLink("Yetenek Ekle", "YetenekEkle", "Yetenekler", null, new { @class = "btn btn-success" })
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Yetenek Adı</th>
+            <th>Yetenek Detayı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var yetenek in Model)
+        {
+            <tr>
+                <td>@yetenek.YetenekAdi</td>
+                <td>@yetenek.Yetenekİcerigi</td>
+                <td>
+                    @using (Html.BeginForm("YetenekSil", "Yetenekler", FormMethod.Post))
+                    {
+                        @Html.Hidden("YetenekID", yetenek.YetenekID)
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "YetenekDuzenle", "Yetenekler", new { yetenekID = yetenek.YetenekID }, new { @class = "btn btn-warning" })
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

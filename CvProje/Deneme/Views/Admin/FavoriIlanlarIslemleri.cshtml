@@ -1,0 +1,70 @@
+﻿@model List<Deneme.Models.FavoriIlanlar>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Favori İlanlar İşlemleri</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background: linear-gradient(90deg, #C7C5F4, #776BCC);
+            color: #fff;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+        .baslik {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="baslik">Favori İlanlar</h2>
+        <div class="row">
+            @{
+                var favoriGruplari = Model.GroupBy(favoriIlan => favoriIlan.IsIlanlari.IsIlaniID);
+            }
+
+            @foreach (var grup in favoriGruplari)
+            {
+                var favoriIlan = grup.First(); 
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@favoriIlan.IsIlanlari.IlanBaslik</h5>
+                            <p class="card-text">@favoriIlan.IsIlanlari.Aciklama</p>
+                            <p class="card-text">@favoriIlan.IsIlanlari.Gereksinimler</p>
+                            <p class="card-text">İlan sahibi: @favoriIlan.IsIlanlari.Isverenler.SirketAdi</p>
+                            <h5>Favorilere Ekleyen Kişi Sayısı: @grup.Count()</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script>
+                document.getElementById('deleteConfirmationCheckbox').addEventListener('change', function () {
+                    var deleteButtons = document.querySelectorAll('.delete-button');
+                    deleteButtons.forEach(function (button) {
+                        button.style.display = this.checked ? 'inline-block' : 'none';
+                    }.bind(this));
+                });
+    </script>
+</body>
+</html>

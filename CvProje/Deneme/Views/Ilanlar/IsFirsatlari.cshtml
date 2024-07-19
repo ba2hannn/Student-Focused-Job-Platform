@@ -1,0 +1,105 @@
+﻿@model Deneme.Models.AnatabloVM
+
+
+@{
+    Layout = "~/Views/Shared/_UstveAltBarOgrenci.cshtml"; // Layout tanımı
+}
+
+
+<style>
+    body {
+        background-color: #e9ebee;
+        font-family: sans-serif;
+    }
+
+    .container {
+        margin-top: 20px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #1B2C51; /* Mor renk */
+        color: #e9ebee;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .card-body {
+        background-color: #fff; /* Beyaz arka plan */
+        color: #000; /* Siyah renk */
+    }
+</style>
+
+<div class="container">
+    <h2 class="text-center" style="color: white;">İş Fırsatları</h2>
+
+    <div class="row">
+        @foreach (var ilan in Model.IsIlanlari)
+        {
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        @ilan.IlanBaslik
+                    </div>
+                    <div class="card-body">
+                        <p>@ilan.Aciklama</p>
+                        <p>@ilan.Isverenler.SirketAdi</p>
+                        <p>@ilan.Sektorler.SektorAdi</p>
+                        <p>Gereksinimler: @ilan.Gereksinimler</p>
+                        <form action="@Url.Action("IsIlanlari", "Ilanlar")" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="ilanID" value="@ilan.IsIlaniID" />
+                            <input type="hidden" name="sektorID" value="@ilan.Sektorler.SektorID" />
+                            <input type="hidden" name="departmanID" value="@ilan.Departmanlar.DepartmanID" />
+
+                        </form>
+                        <form action="@Url.Action("IsIlanlari", "Ilanlar")" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="ilanID" value="@ilan.IsIlaniID" />
+                            <input type="hidden" name="sektorID" value="@ilan.Sektorler.SektorID" />
+                            <input type="hidden" name="departmanID" value="@ilan.Departmanlar.DepartmanID" />
+                            <button type="submit" class="btn btn-primary" style="background-color: #1B2C51;">Favorilere Ekle</button>
+                            <a href="@Url.Action("OgrenciMesajlasma", "Ilanlar", new { ilanid = ilan.IsIlaniID })" class="btn btn-primary" style="background-color: #1B2C51;">Mesaj Gönder</a>
+                            <a href="@Url.Action("IlanBasvuru", "Ilanlar", new { ilanid = ilan.IsIlaniID })" class="btn btn-primary" style="background-color: #1B2C51;">İlana Başvur</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+        $(document).ready(function () {
+            $('form').submit(function (event) {
+                event.preventDefault(); 
+                var ilanID = $(this).find('input[name="ilanID"]').val(); 
+                favoriEkle(ilanID); 
+            });
+        });
+
+        function favoriEkle(ilanID) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("IsFirsatlari", "Ilanlar")',
+                data: { ilanID: ilanID }, 
+                success: function (result) {
+                    if (result === "exists") {
+                        alert("Bu ilan zaten favorileriniz arasında bulunmaktadır.");
+                    } else {
+                        alert("İş ilanı favorilere eklendi.");
+                    }
+                },
+                error: function () {
+                    alert("Bir hata oluştu, lütfen tekrar deneyin.");
+                }
+            });
+
+        }
+</script>

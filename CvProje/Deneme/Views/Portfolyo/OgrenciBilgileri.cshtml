@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Deneme.Models.Ogrenciler>
+
+@{
+    Layout = "~/Views/Shared/_Portfolyo.cshtml";
+}
+
+<h2 class="mb-4">Kişisel Bilgilerim</h2>
+
+<style>
+    /* Stil dosyası öğrenci kartları için */
+    .card {
+        margin-bottom: 40px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+    .card-title {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .btn {
+        font-size: 1.5rem;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .btn-warning {
+        color: #212529;
+        background-color: #ffc107;
+        border-color: #ffc107;
+    }
+
+        .btn-warning:hover {
+            color: #212529;
+            background-color: #e0a800;
+            border-color: #d39e00;
+        }
+</style>
+
+<div class="container">
+    @foreach (var ogrenci in Model)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-4">Öğrenci Adı: @ogrenci.OgrenciAdi</h5>
+                <h6 class="card-title mb-3">Öğrenci Soyadı: @ogrenci.OgrenciSoyadi</h6>
+                <p class="card-text mb-2">Öğrenci Maili: @ogrenci.OgrenciMail</p>
+                <p class="card-text mb-2">Öğrenci Telefon Numarası: @ogrenci.TelefonNumarasi</p>
+                <p class="card-text mb-2">Öğrenci Şifresi: @ogrenci.Sifre</p>
+                @Html.ActionLink("Düzenle", "OgrenciDuzenle", "Portfolyo", new { ogrenciID = ogrenci.OgrenciID }, new { @class = "btn btn-warning" })
+            </div>
+        </div>
+    }
+</div>

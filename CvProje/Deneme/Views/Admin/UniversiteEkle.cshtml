@@ -1,0 +1,80 @@
+﻿@model Deneme.Models.Universiteler
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Üniversite Ekle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background: linear-gradient(90deg, #C7C5F4, #776BCC);
+            color: #fff;
+        }
+
+        .container {
+            max-width: 500px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+        .baslik {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .card-button {
+            background: #776BCC; /* Arka plan rengi */
+            font-size: 12px; /* Daha küçük font boyutu */
+            padding: 10px 16px; /* Daha küçük içerik dolgusu */
+            border-radius: 20px; /* Daha küçük kenar yarıçapı */
+            border: none; /* Kenar çizgisi kaldırıldı */
+            font-weight: 700;
+            color: #fff; /* Metin rengi */
+            cursor: pointer;
+            transition: .2s;
+            display: block;
+            margin: 20px auto 0 auto; /* Ortaya hizala ve üstte 20px boşluk bırak */
+        }
+
+            .card-button:hover {
+                background-color: #543f86; /* Hover durumunda biraz daha koyu bir renk */
+            }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card p-5">
+            <h2 class="baslik">Üniversite Ekle</h2>
+            @using (Html.BeginForm("UniversiteEkle", "Admin", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <div class="mt-3">
+                        @if (ViewBag.result != null)
+                        {
+                            <div class="alert alert-@ViewBag.status" role="alert">
+                                @ViewBag.result
+                            </div>
+                        }
+                    </div>
+                    <label for="universiteAdi" class="form-label">Üniversite Adı</label>
+                    <input type="text" id="universiteAdi" name="universiteAdi" class="form-control">
+                    <button type="submit" class="card-button mt-3">Üniversiteyi Ekle</button>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

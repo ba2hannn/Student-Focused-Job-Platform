@@ -1,0 +1,27 @@
+<annotation>
+    <folder>Images</folder>
+    <filename>b5900721-58c8-47f1-bd4a-fd9f10d61134.jpg</filename>
+    <path>Images/b5900721-58c8-47f1-bd4a-fd9f10d61134.jpg</path>
+    <source>
+        <database>Unknown</database>
+    </source>
+    <size>
+        <width>1536</width>
+        <height>1536</height>
+        <depth>3</depth>
+    </size>
+    <segmented>0</segmented>
+    <object>
+        <name>pine</name>
+	<damage>other</damage>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>1290</xmin>
+            <ymin>1296</ymin>
+            <xmax>1534</xmax>
+            <ymax>1534</ymax>
+        </bndbox>
+    </object>
+    </annotation>

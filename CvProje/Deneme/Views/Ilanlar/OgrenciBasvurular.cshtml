@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Deneme.Models.Basvurular>
+
+@{
+    Layout = "~/Views/Shared/_UstveAltBarOgrenci.cshtml";
+}
+
+<h2 style="color:white"">Başvurularım</h2>
+
+<table class="table">
+    <thead>
+        <tr style="color:white">
+            <th>İlan Başlığı</th>
+            <th>Durum</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var basvuru in Model)
+        {
+            <tr>
+                <td style="color:white">@basvuru.IsIlanlari.IlanBaslik</td>
+                <td style="b">
+                    @{
+                        string durumRenk = "";
+                        string durumText = "";
+
+                        switch (basvuru.IlanDurumu)
+                        {
+                            case 0:
+                                durumRenk = "black";
+                                durumText = "Bekliyor";
+                                break;
+                            case 1:
+                                durumRenk = "green";
+                                durumText = "Onaylandı";
+                                break;
+                            case 2:
+                                durumRenk = "red";
+                                durumText = "Onaylanmadı";
+                                break;
+                        }
+                    }
+                    <b><span style="color: @durumRenk; background-color: white; border-radius: 10px; padding: 5px;">@durumText</span></b>
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

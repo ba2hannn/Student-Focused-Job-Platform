@@ -1,0 +1,240 @@
+﻿@model Deneme.Controllers.PortfolyoController.PortfolyoViewModel
+
+@{ Layout = null; }
+
+<style>
+    .cssbuttons-io-button {
+        background: #337ab7;
+        color: white;
+        font-family: inherit;
+        padding: 0.35em;
+        padding-left: 1.2em;
+        font-size: 17px;
+        font-weight: 500;
+        border-radius: 0.9em;
+        border: none;
+        letter-spacing: 0.05em;
+        display: flex;
+        align-items: center;
+        box-shadow: inset 0 0 1.6em -0.6em #714da6;
+        overflow: hidden;
+        position: relative;
+        height: 2.8em;
+        padding-right: 3.3em;
+        cursor: pointer;
+    }
+
+        .cssbuttons-io-button .icon {
+            background: white;
+            margin-left: 1em;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.2em;
+            width: 2.2em;
+            border-radius: 0.7em;
+            box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+            right: 0.3em;
+            transition: all 0.3s;
+        }
+
+        .cssbuttons-io-button:hover .icon {
+            width: calc(100% - 0.6em);
+        }
+
+        .cssbuttons-io-button .icon svg {
+            width: 1.1em;
+            transition: transform 0.3s;
+            color: #7b52b9;
+        }
+
+        .cssbuttons-io-button:hover .icon svg {
+            transform: translateX(0.1em);
+        }
+
+        .cssbuttons-io-button:active .icon {
+            transform: scale(0.95);
+        }
+
+    ul.nav li {
+        margin-right: 220px;
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Resume - Start Bootstrap Theme</title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/startbootstrap-resume-gh-pages/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+    <link href="~/startbootstrap-resume-gh-pages/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="~/startbootstrap-resume-gh-pages/css/resume.min.css" rel="stylesheet">
+</head>
+<body id="page-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            @foreach (var x in Model.Ogrenciler)
+            {
+                <span class="d-block d-lg-none">@x.OgrenciAdi @x.OgrenciSoyadi</span>
+                <span class="d-none d-lg-block">
+                </span>}
+        </a>
+
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#about">Hakkımda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#experience">Deneyimmler</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#education">Eğitim</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#skills">Yetenekler</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#interests">İlgi Alanları</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#awards">Sertifikalar</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("OgrenciBilgileri", "Portfolyo")" class="cssbuttons-io-button">
+                        Geri Git
+                        <div class="icon">
+                            <svg height="24"
+                                 width="24"
+                                 viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                      fill="currentColor"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <div class="container-fluid p-0">
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+            @foreach (var x in Model.Ogrenciler)
+            {
+                <div class="w-100">
+                    <h1 class="mb-0">
+                        @x.OgrenciAdi
+                        <span class="text-primary">@x.OgrenciSoyadi</span>
+                    </h1>
+                    <div class="subheading mb-5">
+                        @x.TelefonNumarasi ·
+                        <a href="mailto:name@email.com">@x.OgrenciMail</a>
+                    </div>
+                </div>}
+        </section>
+        <hr class="m-0">
+        <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+            <div class="w-100">
+                <h2 class="mb-5">Deneyimler</h2>
+                @foreach (var x in Model.Deneyimler)
+                {
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+
+                        <div class="resume-content">
+
+                            <h3 class="mb-0">@x.DeneyimAdi</h3>
+                            <div class="subheading mb-3">@x.DeneyimDetayi</div>
+                            <p>@x.Deneyimİcerigi</p>
+                        </div>
+                    </div>}
+
+
+            </div>
+        </section>
+        <hr class="m-0">
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="education">
+            <div class="w-100">
+                <h2 class="mb-5">Eğitim Bilgisi</h2>
+                @foreach (var x in Model.Egitimler)
+                {
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="resume-content">
+                            <h3 class="mb-0">@x.Universiteler.UniversiteAdi</h3>
+                            <div class="subheading mb-3">@x.Bolum.BolumAdi</div>
+                            <div>Sınıf: @x.Sinif</div>
+                            <p>GNO: @x.GNO</p>
+                        </div>
+                    </div>}
+            </div>
+        </section>
+        <hr class="m-0">
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="skills">
+            <div class="w-100">
+                <h2 class="mb-5">Yetenekler</h2>
+                <div class="subheading mb-3">Programlama Dilleri &amp; Diller</div>
+                <div class="subheading mb-3">Workflow</div>
+                @foreach (var x in Model.Yetenekler)
+                {
+                    <ul class="fa-ul mb-0">
+                        <li>
+                            <i class="fa-li fa fa-check"></i>
+                            @x.YetenekAdi
+                        </li>
+                        <li>
+                            <i class="fa-li fa fa-check"></i>
+                            @x.Yetenekİcerigi
+                        </li>
+                    </ul>}
+            </div>
+        </section>
+        <hr class="m-0">
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="interests">
+            <div class="w-100">
+                <h2 class="mb-5">İlgi Alanları</h2>
+                @foreach (var x in Model.IlgiAlanlari)
+                {
+                    <p>@x.IlgiAdi</p>
+                    <p>@x.IlgiAciklamasi</p>}
+            </div>
+        </section>
+        <hr class="m-0">
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="awards">
+            <div class="w-100">
+                <h2 class="mb-5">Başarımlar &amp; Sertifikalar</h2>
+                @foreach (var x in Model.Sertifikalar)
+                {
+                    <ul class="fa-ul mb-0">
+                        <li>
+                            <i class="fa-li fa fa-trophy text-warning"></i>
+                            @x.SertifikaAdi
+                        </li>
+                        <li>
+                            <i class="fa-li fa fa-trophy text-warning"></i>
+                            @x.SertifikaAciklamasi
+                        </li>
+                    </ul>}
+            </div>
+        </section>
+    </div>
+    <script src="~/startbootstrap-resume-gh-pages/vendor/jquery/jquery.min.js"></script>
+    <script src="~/startbootstrap-resume-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/startbootstrap-resume-gh-pages/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/startbootstrap-resume-gh-pages/js/resume.min.js"></script>
+</body>
+</html>
+

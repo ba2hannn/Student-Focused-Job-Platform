@@ -1,0 +1,51 @@
+﻿<div class="container mt-5">
+    <div class="card p-4">
+        <h2 class="baslik">Ders İçeriği Düzenle</h2>
+        @using (Html.BeginForm("DersIcerigiDuzenle", "Admin", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(model => model.IcerigAdi, "İçerik Adı", htmlAttributes: new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.IcerigAdi, new { @class = "form-control" })
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sinif, "Sınıf", htmlAttributes: new { @class = "form-label" })
+                    @Html.DropDownListFor(model => model.Sinif, new SelectList(new List<string> { "1", "2", "3", "4" }), "Sınıf Seçiniz", new { @class = "form-control", @readonly = "readonly" })
+                </div>
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sektorler.SektorAdi, "Sektör Adı", htmlAttributes: new { @class = "form-label" })
+                    @Html.DropDownListFor(model => model.Sektorler.SektorAdi, (SelectList)ViewBag.SektorList, "Seçiniz", new { @class = "form-control" })
+                </div>
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Bolum.BolumAdi, "Bölüm Adı", htmlAttributes: new { @class = "form-label" })
+                    @Html.DropDownListFor(model => model.Bolum.BolumAdi, (SelectList)ViewBag.BolumList, "Seçiniz", new { @class = "form-control" })
+                </div>
+                <br />
+                @Html.HiddenFor(model => model.IcerigID)
+                <button type="submit" class="card-button mt-3">Düzenlemeyi Kaydet</button>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Yeni Ders İçeriği Ekle Formu -->
+<div class="container mt-5">
+    <div class="card p-4">
+        <h2 class="baslik">Yeni Ders İçeriği Ekle</h2>
+        <div class="row justify-content-center">
+            @using (Html.BeginForm("YeniDersIcerigiEkle", "Admin", FormMethod.Post, new { id = "dersIcerigiForm", @class = "mt-4" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="mb-3">
+                    @Html.Label("icerikAdi", "İçerik Adı", new { @class = "form-label", style = "font-size: 18px;" })
+                    @Html.TextBox("icerikAdi", null, new { @class = "form-control", style = "width: 200px;", required = "required" }) <br />
+                </div>
+
+                <button type="submit" class="card-button">Ekle</button>
+            }
+        </div>
+    </div>
+</div>

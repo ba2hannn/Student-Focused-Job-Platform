@@ -1,0 +1,43 @@
+﻿@model Deneme.Models.Ogrenciler
+
+@{
+    Layout = "~/Views/Shared/_Portfolyo.cshtml";
+}
+
+@{
+    var ogrenci = Model;
+}
+
+<h2>Eğitimi Düzenle</h2>
+
+@using (Html.BeginForm("OgrenciDuzenle", "Portfolyo", FormMethod.Post))
+{
+<div class="form-group">
+    <div class="mt-3">
+        @if (ViewBag.result != null)
+        {
+            <div class="alert alert-@ViewBag.status" role="alert">
+                @ViewBag.result
+            </div>
+        }
+    </div>
+    <br />
+    @Html.LabelFor(m => m.OgrenciAdi)
+    @Html.TextBoxFor(m => m.OgrenciAdi, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.OgrenciSoyadi)
+    @Html.TextBoxFor(m => m.OgrenciSoyadi, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.OgrenciMail)
+    @Html.TextBoxFor(m => m.OgrenciMail, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    @Html.LabelFor(m => m.TelefonNumarasi)
+    @Html.TextBoxFor(m => m.TelefonNumarasi, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.Sifre)
+    @Html.TextBoxFor(m => m.Sifre, new { @class = "form-control" })
+    <br />
+    @Html.Hidden("OgrenciID", ogrenci.OgrenciID)
+    <button type="submit" class="btn btn-warning">Güncelle</button>
+</div>
+}

@@ -1,0 +1,37 @@
+﻿@model Deneme.Models.Deneyimler
+
+@{
+    Layout = "~/Views/Shared/_Portfolyo.cshtml";
+}
+
+@{
+    var deneyim = Model;
+}
+
+<h2>Eğitimi Düzenle</h2>
+
+@using (Html.BeginForm("DeneyimDuzenle", "Deneyim", FormMethod.Post))
+{
+<div class="form-group">
+    <div class="mt-3">
+        @if (ViewBag.result != null)
+        {
+            <div class="alert alert-@ViewBag.status" role="alert">
+                @ViewBag.result
+            </div>
+        }
+    </div>
+    <br />
+    @Html.LabelFor(m => m.DeneyimAdi)
+    @Html.TextBoxFor(m => m.DeneyimAdi, new { @class = "form-control" })
+    <br />    
+    @Html.LabelFor(m => m.Deneyimİcerigi)
+    @Html.TextBoxFor(m => m.Deneyimİcerigi, new { @class = "form-control" })
+    <br />  
+    @Html.LabelFor(m => m.DeneyimDetayi)
+    @Html.TextBoxFor(m => m.DeneyimDetayi, new { @class = "form-control" })
+    <br />
+    @Html.Hidden("DeneyimID", deneyim.DeneyimID)
+    <button type="submit" class="btn btn-warning">Güncelle</button>
+</div>
+}

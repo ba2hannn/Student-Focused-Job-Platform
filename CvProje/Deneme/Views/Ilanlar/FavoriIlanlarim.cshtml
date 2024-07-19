@@ -1,0 +1,78 @@
+﻿@model List<Deneme.Models.IsIlanlari>
+
+@{
+    Layout = "~/Views/Shared/_UstveAltBarOgrenci.cshtml";
+}
+
+<style>
+    body {
+        background-color: #e9ebee;
+        font-family: sans-serif;
+    }
+
+    .container {
+        margin-top: 20px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #1B2C51;
+        color: #e9ebee;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .card-body {
+        background-color: #fff;
+        color: #000;
+    }
+
+    .btn-basvur {
+        background-color: #1B2C51;
+        color: #fff;
+    }
+
+    .button-container {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h2 class="text-center" style="color: white;">Favori İlanlar</h2>
+        <div class="row">
+            @foreach (var ilan in Model)
+            {
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            @ilan.IlanBaslik
+                        </div>
+                        <div class="card-body">
+                            <p>@ilan.Aciklama</p>
+                            <p>@ilan.Isverenler.SirketAdi</p>
+                            <p>@ilan.Sektorler.SektorAdi</p>
+                            <p>Gereksinimler: @ilan.Gereksinimler</p>
+                            <div class="button-container">
+                                <a href="@Url.Action("IlanBasvuru", "Ilanlar", new { ilanid = ilan.IsIlaniID })" class="btn btn-primary" style="background-color: #1B2C51;">İlana Başvur</a>
+                                <a href="@Url.Action("OgrenciMesajlasma", "Ilanlar", new { ilanid = ilan.IsIlaniID })" class="btn btn-primary" style="background-color: #1B2C51;">Mesaj Gönder</a>
+                                @using (Html.BeginForm("FavoriIlanlarim", "Ilanlar", FormMethod.Post))
+                                {
+                                    @Html.Hidden("ilanID", ilan.IsIlaniID)
+                                    <button type="submit" class="btn btn-primary" style="background-color: #1B2C51;">Sil</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
