@@ -1,0 +1,2 @@
+# Student-Focused Job Platform
+ This project is an ASP.NET MVC-based website designed to help students find jobs. The site features a variety of features, including automatic CV creation, employer and student logins, messaging, adding favorite ads, viewing ads and applying for jobs. Employers can use the site to review student portfolios to find suitable candidates. The entire project is designed with the Code First approach and uses the MySQL database.
